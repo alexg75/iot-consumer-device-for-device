@@ -15,9 +15,8 @@ DEVICE_STATUS_TOPIC_NAME = "device-status"
 
 async def consume_message(message):        
     if ( not configUtils.isConfigReady()):
-        log.error("missing configuration - forcing configuration load - message will not be processed")
-        kafkaUtils.generateConfigFile()
-        return
+        log.error("missing configuration - forcing configuration load")
+        kafkaUtils.generateConfigFile()        
 
     alias = message["alias"]
     operation = message["operation"].lower()
